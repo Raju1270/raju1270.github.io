@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --font-family-myfont: "MyFont", sans-serif;
+  }
+}
+
+:root {
+  --background: #0a0a0a;
+  --text: #eff9ce;
+  --primary: #ef5143;
+  --dark-text: #4e4e4e;
+  --primary-orange: #ffb261;
+  --secondary-background: #fee9ce;
+}
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0A0A0A;
+    --foreground: #ededed;
+  }
+} */
+
+@font-face {
+  font-family: "MyFont";
+  src: url("/regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyFont";
+  src: url("/semibold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyFont";
+  src: url("/bold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "MyFont", sans-serif;
+}
+
+.primary-bg {
+  background-color: var(--primary);
+}
+
+.primary-text {
+  color: var(--primary);
+}
+
+.dark-text {
+  color: var(--dark-text);
+}
+.primary-orange {
+  color: var(--primary-orange);
+}
+.bg-color-secondary {
+  background-color: var(--secondary-background);
+}
+
+/* Lenis Recommended CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html,
+body {
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
