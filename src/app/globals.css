@@ -59,6 +59,40 @@ body {
   font-family: "MyFont", sans-serif;
 }
 
+/* Custom Cursor Styles */
+@media (min-width: 1024px) {
+  * {
+    cursor: none !important;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [data-cursor="hover"] {
+    cursor: none !important;
+  }
+
+  /* Add transition to buttons for smoother interaction */
+  button,
+  a {
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  button:hover,
+  a:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: transform 0.2s ease-out;
+}
+
 .primary-bg {
   background-color: var(--primary);
 }

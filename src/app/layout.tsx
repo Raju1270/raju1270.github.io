@@ -1,22 +1,27 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { LenisProvider } from '@/components/lenis-provider'
 import { LoadingProvider } from '@/components/loading-provider'
 import './globals.css'
 
-const _geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const _geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
-
 export const metadata: Metadata = {
-  title: 'Raju',
-  description: 'Portfolio',
+  title: 'Raju - Full Stack Developer',
+  description:
+    'Passionate full stack developer focused on scalable applications, enriching user experiences, and impactful projects. Experienced in MERN Stack, Next.js, Go, and modern web technologies.',
+  keywords: [
+    'Full Stack Developer',
+    'React',
+    'Next.js',
+    'JavaScript',
+    'MERN Stack',
+    'Go',
+    'Web Developer',
+  ],
+  authors: [{ name: 'Raju' }],
+  openGraph: {
+    title: 'Raju - Full Stack Developer',
+    description: 'Passionate developer creating scalable applications with modern technologies',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -25,8 +30,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className='antialiased'>
+        {/* <Cursor /> */}
         <LoadingProvider>
           <LenisProvider>
             <div className='flex min-h-screen relative'>
