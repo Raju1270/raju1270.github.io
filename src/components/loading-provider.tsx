@@ -18,26 +18,26 @@ export function LoadingProvider({ children }: LoadingProviderProps) {
     // SMALL DELAY BEFORE HIDING PRELOADER
     setTimeout(() => {
       setIsLoading(false)
-      
+
       // SHOW CONTENT AFTER PRELOADER STARTS ANIMATING OUT
       setTimeout(() => {
         setShowContent(true)
-        
+
         // ANIMATE CONTENT IN
         if (contentRef.current) {
           gsap.fromTo(
             contentRef.current,
-            { 
+            {
               opacity: 0,
               y: 20,
-            //   scale: 0.98
+              //   scale: 0.98
             },
-            { 
+            {
               opacity: 1,
               y: 0,
-            //   scale: 1,
+              //   scale: 1,
               duration: 1.2,
-              ease: 'power2.out'
+              ease: 'power2.out',
             }
           )
         }
@@ -64,13 +64,13 @@ export function LoadingProvider({ children }: LoadingProviderProps) {
   return (
     <>
       {isLoading && <Preloader onLoadComplete={handleLoadComplete} />}
-      <div 
-        ref={contentRef} 
-        className="relative"
-        style={{ 
+      <div
+        ref={contentRef}
+        className='relative'
+        style={{
           opacity: 0,
           visibility: showContent ? 'visible' : 'hidden',
-          willChange: showContent ? 'transform, opacity' : 'auto'
+          willChange: showContent ? 'transform, opacity' : 'auto',
         }}
       >
         {children}

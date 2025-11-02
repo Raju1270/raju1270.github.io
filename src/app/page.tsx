@@ -13,7 +13,6 @@ export default function Home() {
   const fadeRef = useRef<HTMLDivElement>(null)
   const scaleRef = useRef<HTMLDivElement>(null)
   const parallaxRef = useRef<HTMLDivElement>(null)
-  const pinRef = useRef<HTMLDivElement>(null)
   const staggerRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
 
@@ -78,15 +77,6 @@ export default function Home() {
     }
 
     // PIN SECTION
-    if (pinRef.current) {
-      ScrollTrigger.create({
-        trigger: pinRef.current,
-        start: 'top top',
-        end: '+=500',
-        pin: true,
-        pinSpacing: true,
-      })
-    }
 
     // STAGGER ANIMATION
     if (staggerRef.current) {
@@ -185,19 +175,6 @@ export default function Home() {
             <p className='text-xl text-gray-600 dark:text-gray-400'>
               The background moves at a different speed
             </p>
-          </div>
-        </section>
-
-        {/* PIN EXAMPLE */}
-        <section className='min-h-screen'>
-          <div
-            ref={pinRef}
-            className='h-screen flex items-center justify-center bg-gradient-to-br from-orange-400 to-red-500'
-          >
-            <div className='text-center text-white'>
-              <h2 className='text-4xl font-bold mb-4'>Pinned Section</h2>
-              <p className='text-xl'>This section stays pinned while you scroll</p>
-            </div>
           </div>
         </section>
 
