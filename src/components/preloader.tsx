@@ -194,20 +194,11 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
       <div className='relative z-10 flex flex-col items-center justify-center gap-12'>
         {/* COUNTER */}
         <div ref={counterRef} className='text-center primary-text opacity-0'>
-          <div className='text-8xl md:text-9xl font-bold leading-none'>
+          <div className='text-8xl md:text-[12rem] font-bold leading-none'>
             {isInitialized ? progress : 0}
-            <span className='text-6xl md:text-7xl'>%</span>
+            <span className='text-6xl md:text-8xl'>%</span>
           </div>
         </div>
-
-        {/* PROGRESS BAR CONTAINER */}
-        {/* <div className="w-80 md:w-96 h-1 rounded-full overflow-hidden" style={{ background: 'var(--dark-text)', opacity: 0 }}>
-                    <div
-                        ref={progressBarRef}
-                        className="h-full primary-bg rounded-full origin-left will-change-transform"
-                        style={{ transform: 'scaleX(0)' }}
-                    />
-                </div> */}
       </div>
 
       {/* CORNER ACCENT */}

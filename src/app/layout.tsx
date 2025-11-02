@@ -15,8 +15,24 @@ const _geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Raju',
-  description: 'Portfolio',
+  title: 'Raju - Full Stack Developer',
+  description:
+    'Passionate full stack developer focused on scalable applications, enriching user experiences, and impactful projects. Experienced in MERN Stack, Next.js, Go, and modern web technologies.',
+  keywords: [
+    'Full Stack Developer',
+    'React',
+    'Next.js',
+    'JavaScript',
+    'MERN Stack',
+    'Go',
+    'Web Developer',
+  ],
+  authors: [{ name: 'Raju' }],
+  openGraph: {
+    title: 'Raju - Full Stack Developer',
+    description: 'Passionate developer creating scalable applications with modern technologies',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -42,12 +58,17 @@ export default function RootLayout({
 
 const SideBar = () => {
   return (
-    <div className='fixed top-0 left-0 h-full w-14 z-40 flex flex-col items-center py-3'>
+    <div className='fixed top-0 left-0 h-full w-14 z-40 flex flex-col items-center py-2'>
       <div className=''>
         <div className='flex h-12 items-center justify-between'>
-          <div className='flex flex-col gap-2'>
-            <div className='w-6 h-0.5 rounded-full bg-neutral-300'></div>
-            <div className='w-3 h-0.5 rounded-full bg-neutral-300'></div>
+          <div className='flex flex-col gap-1.5 relative group cursor-pointer'>
+            <span className='w-6 h-0.5 rounded-full bg-neutral-200 relative overflow-hidden'>
+              <span className='absolute bottom-0 -left-1 w-1 h-0.5 rounded-full bg-black translate-x-0 group-hover:translate-x-[650%] transition-transform duration-500 ease-in-out'></span>
+            </span>
+            <span className='w-4 h-0.5 rounded-full bg-neutral-200 relative overflow-hidden'>
+              <span className='absolute bottom-0 -left-1 w-1 h-0.5 rounded-full bg-black translate-x-0 group-hover:translate-x-[500%] transition-transform duration-550 ease-in-out'></span>
+            </span>
+
           </div>
         </div>
       </div>
