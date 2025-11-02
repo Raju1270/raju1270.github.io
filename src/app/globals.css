@@ -62,6 +62,9 @@ body {
 .primary-bg {
   background-color: var(--primary);
 }
+.primary-bg-black {
+  background: var(--background);
+}
 
 .primary-text {
   color: var(--primary);
@@ -109,4 +112,15 @@ body::-webkit-scrollbar {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+/* Sliding line animation */
+@keyframes slide-line {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }

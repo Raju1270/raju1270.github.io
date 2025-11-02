@@ -13,7 +13,7 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const progressBarRef = useRef<HTMLDivElement>(null)
   const counterRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
+  const accentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let loadingProgress = 0
@@ -56,25 +56,25 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
     const initAnimation = () => {
       setIsInitialized(true)
 
-      // ANIMATE ALL ELEMENTS TOGETHER WITH NO STAGGER
-      gsap.fromTo(
-        counterRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
-      )
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
-      )
-      // PROGRESS BAR CONTAINER ANIMATION (NOT THE FILL)
-      if (progressBarRef.current?.parentElement) {
-        gsap.fromTo(
-          progressBarRef.current.parentElement,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.6, ease: 'power2.out' }
-        )
-      }
+      // WAIT FOR NEXT FRAME TO ENSURE REFS ARE SET
+      requestAnimationFrame(() => {
+        // ANIMATE ALL ELEMENTS TOGETHER WITH NO STAGGER
+        if (counterRef.current) {
+          gsap.fromTo(
+            counterRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+          )
+        }
+
+        if (accentRef.current) {
+          gsap.fromTo(
+            accentRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+          )
+        }
+      })
     }
 
     // START LOADING IMMEDIATELY
@@ -116,14 +116,18 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
         },
       })
 
-      tl.to(counterRef.current, {
-        opacity: 0,
-        y: -30,
-        duration: 0.5,
-        ease: 'power2.inOut',
-      })
-        .to(
-          textRef.current,
+      if (counterRef.current) {
+        tl.to(counterRef.current, {
+          opacity: 0,
+          y: -30,
+          duration: 0.5,
+          ease: 'power2.inOut',
+        })
+      }
+
+      if (accentRef.current) {
+        tl.to(
+          accentRef.current,
           {
             opacity: 0,
             y: -30,
@@ -132,7 +136,10 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
           },
           '-=0.3'
         )
-        .to(
+      }
+
+      if (progressBarRef.current) {
+        tl.to(
           progressBarRef.current,
           {
             scaleX: 0,
@@ -142,7 +149,10 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
           },
           '-=0.3'
         )
-        .to(
+      }
+
+      if (containerRef.current) {
+        tl.to(
           containerRef.current,
           {
             yPercent: -100,
@@ -151,6 +161,7 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
           },
           '-=0.4'
         )
+      }
     }
 
     // CHECK IF ALREADY LOADED
@@ -199,10 +210,22 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
             <span className='text-6xl md:text-8xl'>%</span>
           </div>
         </div>
+
+        {/* PROGRESS BAR */}
+        <div className='w-96 h-1 bg-neutral-800 rounded-full overflow-hidden'>
+          <div
+            ref={progressBarRef}
+            className='h-full primary-bg rounded-full'
+            style={{ transform: 'scaleX(0)', transformOrigin: 'left center' }}
+          />
+        </div>
       </div>
 
       {/* CORNER ACCENT */}
-      <div className='absolute bottom-8 right-8 dark-text text-sm tracking-widest uppercase'>
+      <div
+        ref={accentRef}
+        className='absolute bottom-8 right-8 dark-text text-sm tracking-widest uppercase opacity-0'
+      >
         Initializing
       </div>
     </div>

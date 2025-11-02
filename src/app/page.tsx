@@ -3,125 +3,14 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
+import { setupAnimations } from '@/animations'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-// ANIMATION CONFIGURATION
-const SCROLL_CONFIG = { invalidateOnRefresh: true }
-
-// ANIMATION HELPERS
-const setupHeroAnimation = (element: HTMLDivElement) => {
-  gsap.from(element.children, {
-    y: 100,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.2,
-    ease: 'power3.out',
-  })
-}
-
-const setupFadeAnimation = (element: HTMLDivElement) => {
-  gsap.fromTo(
-    element,
-    { opacity: 0, y: 100 },
-    {
-      opacity: 1,
-      y: 0,
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 80%',
-        end: 'top 50%',
-        scrub: true,
-        ...SCROLL_CONFIG,
-      },
-    }
-  )
-}
-
-const setupScaleAnimation = (element: HTMLDivElement) => {
-  gsap.fromTo(
-    element,
-    { scale: 0.5 },
-    {
-      scale: 1,
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 80%',
-        end: 'top 50%',
-        scrub: true,
-        ...SCROLL_CONFIG,
-      },
-    }
-  )
-}
-
-const setupParallaxAnimation = (element: HTMLDivElement) => {
-  gsap.to(element, {
-    y: 200,
-    scrollTrigger: {
-      trigger: element,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true,
-      ...SCROLL_CONFIG,
-    },
-  })
-}
-
-const setupStaggerAnimation = (element: HTMLDivElement) => {
-  const items = element.querySelectorAll('.stagger-item')
-  gsap.fromTo(
-    items,
-    { opacity: 0, y: 50 },
-    {
-      opacity: 1,
-      y: 0,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 70%',
-        end: 'top 40%',
-        scrub: true,
-        ...SCROLL_CONFIG,
-      },
-    }
-  )
-}
-
-const setupProgressAnimation = (element: HTMLDivElement) => {
-  gsap.to(element, {
-    scaleY: 1,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      ...SCROLL_CONFIG,
-    },
-  })
-}
-
-// ANIMATION SETUP HELPER - REDUCES COMPLEXITY
-const setupAnimations = (refs: {
-  hero: HTMLDivElement | null
-  fade: HTMLDivElement | null
-  scale: HTMLDivElement | null
-  parallax: HTMLDivElement | null
-  stagger: HTMLDivElement | null
-  progress: HTMLDivElement | null
-}) => {
-  if (refs.hero) setupHeroAnimation(refs.hero)
-  if (refs.fade) setupFadeAnimation(refs.fade)
-  if (refs.scale) setupScaleAnimation(refs.scale)
-  if (refs.parallax) setupParallaxAnimation(refs.parallax)
-  if (refs.stagger) setupStaggerAnimation(refs.stagger)
-  if (refs.progress) setupProgressAnimation(refs.progress)
-}
-
 export default function Home() {
+  const keywords = ['DEVELOPER', 'DESIGNER', 'CODER', 'INNOVATOR']
   const heroRef = useRef<HTMLDivElement>(null)
   const fadeRef = useRef<HTMLDivElement>(null)
   const scaleRef = useRef<HTMLDivElement>(null)
@@ -157,7 +46,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className=''>
       {/* PROGRESS BAR */}
       <div className='fixed top-0 left-0 right-0 h-full w-0.5 z-50'>
         <div
@@ -169,14 +58,27 @@ export default function Home() {
 
       <div className='min-h-screen'>
         {/* HERO SECTION */}
-        <section className='min-h-screen flex items-center justify-center px-8'>
+        <section className='flex flex-col justify-center relative min-h-screen'>
           <div ref={heroRef} className='text-center space-y-8'>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>DEVELOPER</h1>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>DESIGNER</h1>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>CODER</h1>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>INNOVATOR</h1>
-            <p className='text-2xl'>Lorem.</p>
-            <div className='text-lg'> examples</div>
+            {keywords.map((keyword) => (
+              <h1 key={keyword} className='text-[12rem] font-bold primary-text leading-32'>
+                {keyword}
+              </h1>
+            ))}
+          </div>
+          <div className="absolute bottom-6 text-sm font-bold flex items-center gap-2  px-20">
+            <span>SCROLL TO DISCOVER</span>
+            <span className='w-14 h-0.5 rounded-full primary-bg-black relative overflow-hidden'>
+              <span className='absolute inset-0 w-full h-0.5 rounded-full bg-white animate-[slide-line_1.5s_ease-in-out_infinite]'></span>
+            </span>
+          </div>
+        </section>
+        {/* HERO SECTION */}
+        <section className='flex flex-col justify-center  relative'>
+          <div ref={heroRef} className='text-center space-y-8'>
+            <div className=" text-8xl font-bold">
+              Merging creativity and logic to build products that truly work
+            </div>
           </div>
         </section>
 
