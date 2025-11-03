@@ -29,7 +29,7 @@ export function SideBar() {
             </button>
           </div>
         </div>
-        <div className='absolute top-6 left-20'>
+        <div className='absolute top-6 left-18'>
           <svg
             width='24'
             height='24'
@@ -56,6 +56,12 @@ export function SideBar() {
               stroke='white'
             />
           </svg>
+        </div>
+        <div className='absolute bottom-30 w-60 text-sm font-bold md:flex items-center gap-6 rotate-90 hidden'>
+          <span>SCROLL TO DISCOVER</span>
+          <span className='w-14 h-0.5 rounded-full primary-bg-black relative overflow-hidden'>
+            <span className='absolute inset-0 w-full h-0.5 rounded-full bg-white animate-[slide-line_2s_ease-in-out_infinite]'></span>
+          </span>
         </div>
       </div>
 

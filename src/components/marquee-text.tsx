@@ -37,7 +37,7 @@ export default function MarqueeText({ text, direction = 'left' }: MarqueeTextPro
       <div className='marquee-content inline-flex gap-16'>
         {/* Repeat text multiple times for seamless loop */}
         {Array.from({ length: 8 }, (_, i) => `${text}-${i}`).map((item) => (
-          <span key={item} className='text-[18rem] font-bold primary-text'>
+          <span key={item} className='text-6xl lg:text-[16rem] font-bold primary-text'>
             {text}
           </span>
         ))}

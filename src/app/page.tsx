@@ -61,38 +61,33 @@ export default function Home() {
         {/* HERO SECTION */}
         <section className='flex flex-col justify-center relative min-h-screen'>
           <div ref={heroRef} className='text-center space-y-8'>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>DEVELOPER</h1>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>DESIGNER</h1>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>DEVELOPER</h1>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>DESIGNER</h1>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>
               {/* <span className='text-xs primary-orange inline-block align-top mt-2 mr-6'>
                 SAME PASSION.
                 <br /> NEW MISSION.
               </span> */}
               CODER</h1>
-            <h1 className='text-[10rem] font-bold primary-text leading-24'>INNOVATOR</h1>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>INNOVATOR</h1>
           </div>
-          <div className='absolute bottom-6 text-sm font-bold flex items-center gap-2 px-20'>
-            <span>SCROLL TO DISCOVER</span>
-            <span className='w-14 h-0.5 rounded-full primary-bg-black relative overflow-hidden'>
-              <span className='absolute inset-0 w-full h-0.5 rounded-full bg-white animate-[slide-line_1.5s_ease-in-out_infinite]'></span>
-            </span>
-          </div>
+
         </section>
 
-        <section className='flex flex-col relative min-h-screen px-18 py-18'>
-          <div ref={heroRef} className='space-y-8 px-18 flex justify-between flex-col gap-20 '>
-            <div className='text-7xl font-bold w-3/4 '>
-              <span className='text-xs primary-orange inline-block align-top mt-2 mr-10'>
+        <section className='flex flex-col relative min-h-screen px-10 md:px-24 lg:px-36 py-18'>
+          <div ref={heroRef} className='space-y-8 flex justify-between flex-col gap-12 lg:gap-20 '>
+            <div className='text-5xl md:text-5xl lg:text-7xl font-bold md:w-full lg:w-3/4 '>
+              <span className='text-xs primary-orange inline-block align-top mt-2 mr-6 lg:mr-10'>
                 SAME PASSION.
                 <br /> NEW MISSION.
               </span>
               Merging creativity and logic to build products that truly work...
             </div>
-            <div className='flex justify-between items-center gap-6 px-18'>
-              <div className='w-1/2'>
+            <div className='flex flex-col md:flex-row justify-between items-center gap-6 lg:px-18'>
+              <div className=''>
                 <CircularText text='DESIGN BY RAJU - MADE WITH LOVE - ' variant='dark' />
               </div>
-              <div className='flex gap-6 flex-1 '>
+              <div className='flex flex-col lg:flex-row gap-6 flex-1 '>
                 <span className='w-82 block text-balance'>
                   My focus is on learning, building, and growing - creating software that's not just
                   functional, but meaningful and impactful. I aim to evolve into a developer who
@@ -109,7 +104,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='min-h-screen flex items-center justify-center'>
+        <section className='min-h-[50dvh] flex items-center justify-center'>
           <MarqueeText text="Let's Work Together." direction='left' />
         </section>
 
