@@ -18,11 +18,12 @@ interface LenisProviderProps {
 
 export function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null)
+  const rafIdRef = useRef<number | null>(null)
 
   useEffect(() => {
     // INITIALIZE LENIS
     const lenis = new Lenis({
-      autoRaf: true,
+      autoRaf: false,
       smoothWheel: true,
       lerp: 0.1,
       duration: 1.2,
@@ -39,24 +40,51 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     lenisRef.current = lenis
 
-    // SYNCHRONIZE LENIS SCROLLING WITH GSAP'S SCROLL TRIGGER PLUGIN
     lenis.on('scroll', ScrollTrigger.update)
 
-    // ADD LENIS'S REQUEST ANIMATION FRAME (RAF) METHOD TO GSAP'S TICKER
-    // THIS ENSURES LENIS'S SMOOTH SCROLL ANIMATION UPDATES ON EACH GSAP TICK
+    function raf(time: number) {
+      lenis.raf(time)
+      rafIdRef.current = requestAnimationFrame(raf)
+    }
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000) // SECONDS TO MILLISECONDS
-    })
+    rafIdRef.current = requestAnimationFrame(raf)
 
-    // DISABLE LAG SMOOTHING IN GSAP TO PREVENT ANY DELAY IN SCROLL ANIMATIONS
     gsap.ticker.lagSmoothing(0)
 
-    // CLEANUP
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (rafIdRef.current !== null) {
+          cancelAnimationFrame(rafIdRef.current)
+          rafIdRef.current = null
+        }
+      } else {
+        if (rafIdRef.current === null) {
+          rafIdRef.current = requestAnimationFrame(raf)
+        }
+
+        setTimeout(() => {
+          ScrollTrigger.refresh()
+        }, 100)
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    const handleResize = () => {
+      ScrollTrigger.refresh()
+    }
+
+    window.addEventListener('resize', handleResize)
+
     return () => {
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current)
+      }
       lenis.destroy()
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('resize', handleResize)
+      ScrollTrigger.getAll().forEach((trigger) => {
+        trigger.kill()
       })
     }
   }, [])

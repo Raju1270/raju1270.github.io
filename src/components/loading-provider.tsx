@@ -7,9 +7,10 @@ import { Preloader } from './preloader'
 
 interface LoadingProviderProps {
   children: ReactNode
+  sidebar?: ReactNode
 }
 
-export function LoadingProvider({ children }: LoadingProviderProps) {
+export function LoadingProvider({ children, sidebar }: LoadingProviderProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [showContent, setShowContent] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -64,12 +65,11 @@ export function LoadingProvider({ children }: LoadingProviderProps) {
   return (
     <>
       {isLoading && <Preloader onLoadComplete={handleLoadComplete} />}
+      {!isLoading && sidebar}
       <div
         ref={contentRef}
-        className='relative'
+        className={`relative z-50 opacity-0 ${showContent ? 'visible' : 'invisible'}`}
         style={{
-          opacity: 0,
-          visibility: showContent ? 'visible' : 'hidden',
           willChange: showContent ? 'transform, opacity' : 'auto',
         }}
       >

@@ -4,13 +4,14 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
 import { setupAnimations } from '@/animations'
+import CircularText from '@/components/circular-text'
+import MarqueeText from '@/components/marquee-text'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
 export default function Home() {
-  const keywords = ['DEVELOPER', 'DESIGNER', 'CODER', 'INNOVATOR']
   const heroRef = useRef<HTMLDivElement>(null)
   const fadeRef = useRef<HTMLDivElement>(null)
   const scaleRef = useRef<HTMLDivElement>(null)
@@ -60,38 +61,56 @@ export default function Home() {
         {/* HERO SECTION */}
         <section className='flex flex-col justify-center relative min-h-screen'>
           <div ref={heroRef} className='text-center space-y-8'>
-            {keywords.map((keyword) => (
-              <h1 key={keyword} className='text-[12rem] font-bold primary-text leading-32'>
-                {keyword}
-              </h1>
-            ))}
+            <h1 className='text-[10rem] font-bold primary-text leading-24'>DEVELOPER</h1>
+            <h1 className='text-[10rem] font-bold primary-text leading-24'>DESIGNER</h1>
+            <h1 className='text-[10rem] font-bold primary-text leading-24'>
+              {/* <span className='text-xs primary-orange inline-block align-top mt-2 mr-6'>
+                SAME PASSION.
+                <br /> NEW MISSION.
+              </span> */}
+              CODER</h1>
+            <h1 className='text-[10rem] font-bold primary-text leading-24'>INNOVATOR</h1>
           </div>
-          <div className="absolute bottom-6 text-sm font-bold flex items-center gap-2  px-20">
+          <div className='absolute bottom-6 text-sm font-bold flex items-center gap-2 px-20'>
             <span>SCROLL TO DISCOVER</span>
             <span className='w-14 h-0.5 rounded-full primary-bg-black relative overflow-hidden'>
               <span className='absolute inset-0 w-full h-0.5 rounded-full bg-white animate-[slide-line_1.5s_ease-in-out_infinite]'></span>
             </span>
           </div>
         </section>
-        {/* HERO SECTION */}
-        <section className='flex flex-col justify-center  relative'>
-          <div ref={heroRef} className='text-center space-y-8'>
-            <div className=" text-8xl font-bold">
-              Merging creativity and logic to build products that truly work
+
+        <section className='flex flex-col relative min-h-screen px-18 py-18'>
+          <div ref={heroRef} className='space-y-8 px-18 flex justify-between flex-col gap-20 '>
+            <div className='text-7xl font-bold w-3/4 '>
+              <span className='text-xs primary-orange inline-block align-top mt-2 mr-10'>
+                SAME PASSION.
+                <br /> NEW MISSION.
+              </span>
+              Merging creativity and logic to build products that truly work...
+            </div>
+            <div className='flex justify-between items-center gap-6 px-18'>
+              <div className='w-1/2'>
+                <CircularText text='DESIGN BY RAJU - MADE WITH LOVE - ' variant='dark' />
+              </div>
+              <div className='flex gap-6 flex-1 '>
+                <span className='w-82 block text-balance'>
+                  My focus is on learning, building, and growing - creating software that's not just
+                  functional, but meaningful and impactful. I aim to evolve into a developer who
+                  crafts solutions that make technology feel human.
+                </span>
+
+                <span className='w-82 block text-balance'>
+                  As an emerging developer, I'm focused on mastering my craft, understanding users
+                  deeply, and building solutions that matter. Every line of code is a step toward
+                  creating something smarter, simpler, and more human.
+                </span>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* FADE IN EXAMPLE */}
-        <section className='min-h-screen flex items-center justify-center px-8'>
-          <div
-            ref={fadeRef}
-            className='max-w-2xl bg-blue-500 p-16 rounded-2xl text-white text-center'
-            style={{ willChange: 'transform, opacity' }}
-          >
-            <h2 className='text-4xl font-bold mb-4'>Fade In</h2>
-            <p className='text-xl'>This element fades in and moves up as you scroll</p>
-          </div>
+        <section className='min-h-screen flex items-center justify-center'>
+          <MarqueeText text="Let's Work Together." direction='left' />
         </section>
 
         {/* SCALE EXAMPLE */}
