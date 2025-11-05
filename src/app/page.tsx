@@ -1,11 +1,13 @@
 'use client'
 
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useEffect, useRef } from 'react'
 import { setupAnimations } from '@/animations'
+import AnimatedSignature from '@/components/animated-signature'
 import CircularText from '@/components/circular-text'
 import MarqueeText from '@/components/marquee-text'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -19,6 +21,10 @@ export default function Home() {
   const staggerRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const image1Ref = useRef<HTMLDivElement>(null)
+  const image2Ref = useRef<HTMLDivElement>(null)
+  const image3Ref = useRef<HTMLDivElement>(null)
+  const image4Ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // CREATE GSAP CONTEXT FOR BETTER CLEANUP AND SCOPING
@@ -30,6 +36,43 @@ export default function Home() {
         parallax: parallaxRef.current,
         stagger: staggerRef.current,
         progress: progressRef.current,
+      })
+
+      // PARALLAX IMAGES ANIMATION
+      const images = [image1Ref.current, image2Ref.current, image3Ref.current, image4Ref.current]
+      
+      images.forEach((img, index) => {
+        if (!img) return
+        
+        // Different speed for each image (parallax effect)
+        const speed = (index + 1) * 30 // 30, 60, 90, 120
+        
+        gsap.to(img, {
+          y: speed,
+          scrollTrigger: {
+            trigger: img,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        })
+        
+        // Scale on hover
+        img.addEventListener('mouseenter', () => {
+          gsap.to(img, {
+            scale: 1.1,
+            duration: 0.3,
+            ease: 'power2.out',
+          })
+        })
+        
+        img.addEventListener('mouseleave', () => {
+          gsap.to(img, {
+            scale: 1,
+            duration: 0.3,
+            ease: 'power2.out',
+          })
+        })
       })
     }, containerRef)
 
@@ -71,7 +114,6 @@ export default function Home() {
               CODER</h1>
             <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>INNOVATOR</h1>
           </div>
-
         </section>
 
         <section className='flex flex-col relative min-h-screen px-10 md:px-24 lg:px-36 py-18'>
@@ -83,7 +125,7 @@ export default function Home() {
               </span>
               Merging creativity and logic to build products that truly work...
             </div>
-            <div className='flex flex-col md:flex-row justify-between items-center gap-6 lg:px-18'>
+            <div className='flex flex-col md:flex-row justify-between items-center gap-6 lg:gap-18 lg:px-18'>
               <div className=''>
                 <CircularText text='DESIGN BY RAJU - MADE WITH LOVE - ' variant='dark' />
               </div>
@@ -104,11 +146,72 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='min-h-[50dvh] flex items-center justify-center'>
+        <section className='min-h-[50dvh] flex items-center justify-center mb-44'>
           <MarqueeText text="Let's Work Together." direction='left' />
         </section>
 
-        {/* SCALE EXAMPLE */}
+        {/* PARALLAX */}
+        <section className='min-h-screen flex flex-col items-center justify-center px-8 relative overflow-hidden gap-8'>
+
+          <AnimatedSignature className='mb-44 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+          
+          {/* Images with absolute positioning and mix-blend-mode */}
+          <div ref={image1Ref} className='absolute top-10 left-60 overflow-hidden rounded-2xl w-60 h-60 mix-blend-difference' style={{ willChange: 'transform' }}>
+            <Image 
+              src='/imgi_4_03.jpg' 
+              alt='Portfolio Image 1' 
+              width={400} 
+              height={400}
+              className='w-full h-full object-cover'
+            />
+          </div>
+          
+          <div ref={image2Ref} className='absolute top-32 right-60 overflow-hidden rounded-2xl w-60 h-60 mix-blend-difference' style={{ willChange: 'transform' }}>
+            <Image 
+              src='/imgi_5_04.jpg' 
+              alt='Portfolio Image 2' 
+              width={400} 
+              height={400}
+              className='w-full h-full object-cover'
+            />
+          </div>
+          
+          <div ref={image3Ref} className='absolute bottom-10 left-60 overflow-hidden rounded-2xl w-60 h-60 mix-blend-difference' style={{ willChange: 'transform' }}>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className='w-full h-full object-cover'
+            >
+              <source src='/gif-1.mp4' type='video/mp4' />
+            </video>
+          </div>
+          
+          <div ref={image4Ref} className='absolute bottom-32 right-50 overflow-hidden rounded-2xl w-60 h-60 mix-blend-difference' style={{ willChange: 'transform' }}>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className='w-full h-full object-cover'
+            >
+              <source src='/gif-2.mp4' type='video/mp4' />
+            </video>
+          </div>
+          
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>WHERE</h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>AMBITION</h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>MEETS</h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>EXECUTION</h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>IN THE</h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>MODERN </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>WEB</h3>
+
+
+        </section>
+
+        {/* SCALE */}
         <section className='min-h-screen flex items-center justify-center px-8'>
           <div
             ref={scaleRef}
@@ -120,22 +223,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PARALLAX EXAMPLE */}
-        <section className='min-h-screen flex items-center justify-center px-8 relative overflow-hidden'>
-          <div
-            ref={parallaxRef}
-            className='absolute inset-0 bg-linear-to-br from-purple-400 to-pink-500 opacity-20'
-            style={{ willChange: 'transform' }}
-          />
-          <div className='max-w-2xl bg-white dark:bg-gray-900 p-16 rounded-2xl text-center relative z-10'>
-            <h2 className='text-4xl font-bold mb-4 text-black dark:text-white'>Parallax</h2>
-            <p className='text-xl text-gray-600 dark:text-gray-400'>
-              The background moves at a different speed
-            </p>
-          </div>
-        </section>
 
-        {/* STAGGER EXAMPLE */}
+        {/* STAGGER */}
         <section className='min-h-screen flex items-center justify-center px-8'>
           <div ref={staggerRef} className='max-w-4xl w-full'>
             <h2 className='text-4xl font-bold mb-12 text-center text-black dark:text-white'>
@@ -194,6 +283,6 @@ export default function Home() {
           <p>Built with Next.js, GSAP, and Lenis</p>
         </footer>
       </div>
-    </div>
+    </div >
   )
 }
