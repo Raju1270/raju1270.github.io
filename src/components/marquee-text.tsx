@@ -36,7 +36,7 @@ export default function MarqueeText({ text, direction = 'left' }: MarqueeTextPro
     <div ref={marqueeRef} className='overflow-hidden whitespace-nowrap w-full'>
       <div className='marquee-content inline-flex gap-16'>
         {/* Repeat text multiple times for seamless loop */}
-        {Array.from({ length: 8 }, (_, i) => `${text}-${i}`).map((item) => (
+        {Array.from({ length: 5 }, (_, i) => `${text}-${i}`).map((item) => (
           <span key={item} className='text-6xl lg:text-[16rem] font-bold primary-text'>
             {text}
           </span>

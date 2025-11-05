@@ -224,9 +224,9 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
       {/* CORNER ACCENT */}
       <div
         ref={accentRef}
-        className='absolute bottom-8 right-8 dark-text text-sm tracking-widest uppercase opacity-0'
+        className='absolute bottom-8 right-8 text-neutral-400 text-sm tracking-widest uppercase opacity-0'
       >
-        Initializing
+        Initializing...
       </div>
     </div>
   )
