@@ -1,14 +1,14 @@
 'use client'
 
-import { setupAnimations } from '@/animations'
-import AnimatedSignature from '@/components/animated-signature'
-import CircularText from '@/components/circular-text'
-import MarqueeText from '@/components/marquee-text'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
+import { setupAnimations } from '@/animations'
+import AnimatedSignature from '@/components/animated-signature'
+import CircularText from '@/components/circular-text'
+import MarqueeText from '@/components/marquee-text'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -105,15 +105,22 @@ export default function Home() {
         {/* HERO SECTION */}
         <section className='flex flex-col justify-center relative min-h-screen'>
           <div ref={heroRef} className='text-center space-y-8'>
-            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>DEVELOPER</h1>
-            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>DESIGNER</h1>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>
+              DEVELOPER
+            </h1>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>
+              DESIGNER
+            </h1>
             <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>
               {/* <span className='text-xs primary-orange inline-block align-top mt-2 mr-6'>
                 SAME PASSION.
                 <br /> NEW MISSION.
               </span> */}
-              CODER</h1>
-            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>INNOVATOR</h1>
+              CODER
+            </h1>
+            <h1 className='text-5xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-5 md:leading-12 lg:leading-24'>
+              INNOVATOR
+            </h1>
           </div>
         </section>
 
@@ -153,11 +160,14 @@ export default function Home() {
 
         {/* PARALLAX */}
         <section className='lg:min-h-screen min-h-[80dvh] flex flex-col items-center justify-center px-8 relative overflow-'>
-
           <AnimatedSignature className='mb-20 md:mb-44 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 md:w-auto md:h-auto' />
 
-          {/* Top Left Image */}
-          <div ref={image1Ref} className='absolute top-4 left-14 md:top-10 md:left-20 lg:left-60 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference' style={{ willChange: 'transform' }}>
+          {/* TOP LEFT IMAGE */}
+          <div
+            ref={image1Ref}
+            className='absolute top-4 left-14 md:top-10 md:left-20 lg:left-60 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference'
+            style={{ willChange: 'transform' }}
+          >
             <Image
               src='/imgi_4_03.jpg'
               alt='Portfolio Image 1'
@@ -167,8 +177,12 @@ export default function Home() {
             />
           </div>
 
-          {/* Top Right Image */}
-          <div ref={image2Ref} className='absolute top-10 right-10 md:top-32 md:right-20 lg:right-60 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference' style={{ willChange: 'transform' }}>
+          {/* TOP RIGHT IMAGE */}
+          <div
+            ref={image2Ref}
+            className='absolute top-10 right-10 md:top-32 md:right-20 lg:right-60 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference'
+            style={{ willChange: 'transform' }}
+          >
             <Image
               src='/imgi_5_04.jpg'
               alt='Portfolio Image 2'
@@ -178,75 +192,84 @@ export default function Home() {
             />
           </div>
 
-          {/* Bottom Left Video */}
-          <div ref={image3Ref} className='absolute bottom-30 left-4 md:bottom-10 md:left-20 lg:left-60 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference' style={{ willChange: 'transform' }}>
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className='w-full h-full object-cover'
-            >
+          {/* BOTTOM LEFT VIDEO */}
+          <div
+            ref={image3Ref}
+            className='absolute bottom-30 left-4 md:bottom-10 md:left-20 lg:left-60 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference'
+            style={{ willChange: 'transform' }}
+          >
+            <video autoPlay loop muted playsInline className='w-full h-full object-cover'>
               <source src='/gif-1.mp4' type='video/mp4' />
             </video>
           </div>
 
-          {/* Bottom Right Video */}
-          <div ref={image4Ref} className='absolute bottom-44 right-4 md:bottom-32 md:right-20 lg:right-50 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference' style={{ willChange: 'transform' }}>
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className='w-full h-full object-cover'
-            >
+          {/* BOTTOM RIGHT VIDEO */}
+          <div
+            ref={image4Ref}
+            className='absolute bottom-44 right-4 md:bottom-32 md:right-20 lg:right-50 overflow-hidden w-32 md:w-40 lg:w-60 mix-blend-difference'
+            style={{ willChange: 'transform' }}
+          >
+            <video autoPlay loop muted playsInline className='w-full h-full object-cover'>
               <source src='/gif-2.mp4' type='video/mp4' />
             </video>
           </div>
 
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>WHERE</h3>
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>AMBITION</h3>
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>MEETS</h3>
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>EXECUTION</h3>
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>IN THE</h3>
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>MODERN </h3>
-          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>WEB</h3>
-
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            WHERE
+          </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            AMBITION
+          </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            MEETS
+          </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            EXECUTION
+          </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            IN THE
+          </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            MODERN{' '}
+          </h3>
+          <h3 className='text-6xl md:text-8xl lg:text-[10rem] font-bold primary-text leading-13 md:leading-12 lg:leading-34 '>
+            WEB
+          </h3>
         </section>
-
 
         {/* SCALE */}
         <section className='min-h-screen flex flex-col gap-10 justify-center px-10 md:px-24 lg:px-36 relative md:lg-30 lg:mt-56'>
-          <Link href={'/about'} className='primary-orange text-center lg:text-2xl text-xl font-bold underline underline-offset-10 block '>
+          <Link
+            href={'/about'}
+            className='primary-orange text-center lg:text-2xl text-xl font-bold underline underline-offset-10 block '
+          >
             My Story ↗
           </Link>
 
-          <div className="mt-10 flex flex-col lg:flex-row justify-between gap-12 lg:items-start">
-            <div className='primary-orange lg:text-2xl text-xl font-bold lg:sticky lg:top-32 lg:self-start' data-lenis-prevent>
+          <div className='mt-10 flex flex-col lg:flex-row justify-between gap-12 lg:items-start'>
+            <div className='primary-orange lg:text-2xl text-xl font-bold lg:sticky lg:top-32 lg:self-start'>
               Tech Stack
             </div>
 
-            <div className="text-5xl lg:text-[5rem] font-bold relative lg:w-1/2">
-              <h3 className="">NextJS</h3>
-              <h3 className="">ReactJS</h3>
-              <h3 className="">NodeJS</h3>
-              <h3 className="">ExpressJS</h3>
-              <h3 className="">MongoDB</h3>
-              <h3 className="">TailwindCSS</h3>
-              <h3 className="">Shadcn/UI</h3>
-              <h3 className="">TypeScript</h3>
-              <h3 className="">JavaScript</h3>
-              <h3 className="">GSAP</h3>
-              <h3 className="">Framer Motion</h3>
-              <h3 className="">MySQL</h3>
+            <div className='text-5xl lg:text-[5rem] font-bold relative lg:w-1/2'>
+              <h3 className=''>NextJS</h3>
+              <h3 className=''>ReactJS</h3>
+              <h3 className=''>NodeJS</h3>
+              <h3 className=''>ExpressJS</h3>
+              <h3 className=''>MongoDB</h3>
+              <h3 className=''>TailwindCSS</h3>
+              <h3 className=''>Shadcn/UI</h3>
+              <h3 className=''>TypeScript</h3>
+              <h3 className=''>JavaScript</h3>
+              <h3 className=''>GSAP</h3>
+              <h3 className=''>Framer Motion</h3>
+              <h3 className=''>MySQL</h3>
             </div>
-
           </div>
         </section>
 
-
         {/* STAGGER */}
-        <section className='min-h-screen flex items-center justify-center px-8'>
+        {/* <section className='min-h-screen flex items-center justify-center px-8'>
           <div ref={staggerRef} className='max-w-4xl w-full'>
             <h2 className='text-4xl font-bold mb-12 text-center text-black dark:text-white'>
               Stagger Animation
@@ -263,10 +286,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* INFO SECTION */}
-        <section className='min-h-screen flex items-center justify-center px-8'>
+        {/* <section className='min-h-screen flex items-center justify-center px-8'>
           <div className='max-w-3xl space-y-8'>
             <h2 className='text-4xl font-bold text-black dark:text-white'>How to Use</h2>
             <div className='space-y-4 text-lg text-gray-600 dark:text-gray-400'>
@@ -297,13 +320,13 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* FOOTER */}
         <footer className='py-16 text-center text-gray-500'>
           <p>Built with Next.js, GSAP, and Lenis</p>
         </footer>
       </div>
-    </div >
+    </div>
   )
 }

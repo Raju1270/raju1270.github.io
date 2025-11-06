@@ -20,11 +20,11 @@ export default function AnimatedSignature({ className = '' }: AnimatedSignatureP
     if (!svgRef.current) return
 
     const paths = svgRef.current.querySelectorAll('path')
-    
+
     // Set initial state - hide all paths
     paths.forEach((path) => {
       const length = path.getTotalLength()
-      
+
       // Set stroke properties for drawing effect
       gsap.set(path, {
         strokeDasharray: length,
@@ -57,7 +57,7 @@ export default function AnimatedSignature({ className = '' }: AnimatedSignatureP
         },
         index * 0.3 // Stagger each path
       )
-      
+
       // Fill the path after drawing (optional)
       tl.to(
         path,

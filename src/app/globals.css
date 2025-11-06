@@ -66,7 +66,7 @@ body {
   background-color: var(--secondary-background);
 }
 
-/* Lenis Recommended CSS */
+/* LENIS RECOMMENDED CSS */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -100,7 +100,7 @@ body::-webkit-scrollbar {
   pointer-events: none;
 }
 
-/* Sliding line animation */
+/* SLIDING LINE ANIMATION */
 @keyframes slide-line {
   0% {
     transform: translateX(-100%);

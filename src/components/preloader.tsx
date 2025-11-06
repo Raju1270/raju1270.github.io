@@ -201,7 +201,6 @@ export function Preloader({ onLoadComplete }: PreloaderProps) {
         WebkitBackfaceVisibility: 'hidden',
       }}
     >
-      {/* CONTENT */}
       <div className='relative z-10 flex flex-col items-center justify-center gap-12'>
         {/* COUNTER */}
         <div ref={counterRef} className='text-center primary-text opacity-0'>
